@@ -1,0 +1,11 @@
+{% extends 'michelinapp/base.html' %}
+{%load static%}
+{%block content%}
+<div class="ml-5 mr-5">
+    <form class="navbar-form pull-left" action="{% url 'recipe' %}">
+      <input type="text" class="span2" name="ingredient">
+      <button type="submit" class="btn">Submit</button>
+    </form>
+</div>
+{%endblock%}
+
