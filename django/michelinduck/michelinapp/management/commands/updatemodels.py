@@ -12,7 +12,7 @@ class Command(BaseCommand):
         #Database Connections
         df=pd.read_csv('ingredients.csv')
         for A in zip(df.name):
-            models = Ingredients(name=A)
+            models = Ingredients(name=A.strip("(',)"))
             models.save()
 
         # name,minutes,n_steps,steps,description,ingredients,n_ingredients
