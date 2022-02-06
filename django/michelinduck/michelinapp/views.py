@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from .models import Ingredients, Recipes, Junction
 
 # Create your views here.
 
@@ -16,6 +17,11 @@ def delete_ingrediant(request):
 
 
 def get_recipe(request):
-    ingredient = request.GET.get('ingredient')
+    ingredients = request.GET.get('ingredient')
+    ingredients = ingredients.split(",")
+    ingredients = "('" + ingredients[0] + "',)"
 
-    return render(request, 'michelinapp/recipe.html', {'recipe': ingredient})
+    ingID = Ingredients.objects.all(name__in="('" + ingredients[0] + "',)")
+    print(ingID[0])
+
+    return render(request, 'michelinapp/recipe.html', {'recipe': ingredients})
