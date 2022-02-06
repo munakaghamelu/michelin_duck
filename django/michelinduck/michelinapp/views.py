@@ -19,9 +19,9 @@ def delete_ingrediant(request):
 def get_recipe(request):
     ingredients = request.GET.get('ingredient')
     ingredients = ingredients.split(",")
-    ingredients = "('" + ingredients[0] + "',)"
 
-    ingID = Ingredients.objects.all(name__in="('" + ingredients[0] + "',)")
-    print(ingID[0])
+    ingID = Ingredients.objects.filter(name__in=ingredients)
+    for id in ingID:
+        print(id.id)
 
     return render(request, 'michelinapp/recipe.html', {'recipe': ingredients})
