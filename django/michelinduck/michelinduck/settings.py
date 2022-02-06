@@ -68,8 +68,8 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'michelinduck.wsgi.application'
-
+# WSGI_APPLICATION = 'michelinduck.wsgi.application'
+# WSGI_APPLICATION = 'michelinapp.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases

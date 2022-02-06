@@ -39,5 +39,7 @@ def get_recipe(request):
     for r in recipes:
         print(r.recipe_id)
         print(r.name)
+        print(r.ingredients)
+
 
     return render(request, 'michelinapp/recipe.html', {'recipe': ingredients})
