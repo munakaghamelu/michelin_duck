@@ -15,10 +15,13 @@ str_ingredients = str_ingredients.replace(']','')
 str_ingredients = str_ingredients.replace('\'','')
 list_ingredients = str_ingredients.split(',')
 
-print(len(list_ingredients))
-df_ingredients = pd.DataFrame({'name': list_ingredients[0]}, index=[0])
-for i in range(1,len(list_ingredients)):
-    df_ingredients.loc[len(df_ingredients)] = list_ingredients[i]
+unique_list = set()
+for x in list_ingredients:
+    unique_list.add(x)
+
+df_ingredients = pd.DataFrame({'name': unique_list[0]}, index=[0])
+for i in range(1,len(unique_list)):
+    df_ingredients.loc[len(df_ingredients)] = unique_list[i]
 
 # prepare to add list of ingredient ids
 df_ingredients['id'] = str(np.arange(len(df_ingredients)))
