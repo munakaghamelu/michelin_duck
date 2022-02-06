@@ -83,3 +83,8 @@
 	position: absolute;
 	z-index: 100;
 }
+
+.left_arrow{
+    position: absolute;
+    bottom: 0px;
+}

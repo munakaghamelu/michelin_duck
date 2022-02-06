@@ -18,6 +18,7 @@ def delete_ingrediant(request):
     return
 
 
+<<<<<<< HEAD
 def get_recipe(request):
     # recipe_id = request.GET.get('recipe_id')
     recipe = Recipes.objects.get(id='3')
@@ -37,10 +38,34 @@ def get_recipe(request):
         if any(word in steps[i] for word in dangerous):
             safe[i] = 1
     print(steps)
+=======
+def get_recipe_names(request):
+    ingredients = request.GET.get('ingredient')
+    ingredients = ingredients.split(",")
+
+    ingredients_items = Ingredients.objects.filter(name__in=ingredients)
+    ingredients_ids = []
+    for ingredient in ingredients_items:
+        ingredients_ids.append(ingredient.ingredient_id)
+
+    matched_recipes = []
+    for ingredients_id in ingredients_ids:
+        recipes = Junction.objects.filter(ingredient_id=ingredients_id)
+        recipe_ids = []
+        for recipe in recipes:
+            recipe_ids.append(recipe.recipe_id)
+        matched_recipes.append(recipe_ids)
+    
+    best_matched_recipes = list(set.intersection(*map(set, matched_recipes)))
+    recipes = Recipes.objects.filter(id__in=best_matched_recipes)
+
+    return render(request, 'michelinapp/recipebook.html', {'recipes': recipes})
+>>>>>>> 3b0a44eb1b1fb9d228b3753f5df67638a9e2387d
 
     for i in range(len(steps)):
         print(str(safe[i]) + " : " + steps[i])
 
+<<<<<<< HEAD
     result = list(zip(steps, safe))
     print(result)
 
@@ -49,3 +74,9 @@ def get_recipe(request):
 
 def evaluate_safety(request):
     return
+=======
+def get_recipe(request):
+    recipe_id = request.GET.get('select')
+    print(recipe_id)
+    return render(request, 'michelinapp/recipe.html', {'recipe':recipe_id})
+>>>>>>> 3b0a44eb1b1fb9d228b3753f5df67638a9e2387d
