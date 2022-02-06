@@ -31,7 +31,7 @@
     font-family: 'Patrick Hand SC', cursive;
     font-size: 30px;
     padding: 50px;
-    background: url("/static/michelinapp/notebook.png");
+    background: url("/static/michelinapp/notebook.png") repeat;
     background-repeat: no-repeat;
     background-size: 100% 100%;
     background-position: center;
@@ -88,3 +88,32 @@
     position: absolute;
     bottom: 0px;
 }
+
+.ul{
+    list-style: none;
+    padding-left: 0;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+}
+
+u.cloud {
+    list-style: none;
+    padding-left: 0;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    line-height: 2.5rem;
+}
+
+ul.cloud a {
+    color: #a33;
+    display: block;
+    font-size: 1.5rem;
+    padding: 0.125rem 0.25rem;
+    text-decoration: none;
+    position: relative;
+}
+  

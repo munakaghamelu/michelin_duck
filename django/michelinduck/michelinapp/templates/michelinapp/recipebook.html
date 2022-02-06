@@ -1,8 +1,25 @@
 {% extends 'michelinapp/base.html' %}
+{%load static%}
+
 {% block content %}
 <p>{{recipe}}</p>
 
-{% for recipe in recipes %}
-    <a class="nav-link" href="recipe?select={{ recipe.id }}">{{ recipe.name }}</a></td>
-{% endfor %}
-{%endblock%}
+<div class="lined_thick">
+    <h1>List of Recipes</h1>
+</div>
+
+<div class="notebook">
+    <ul class="cloud">
+        {% for recipe in recipes %}
+        <li><a class="nav-link" href="recipe?select={{ recipe.id }}">{{ recipe.name }}</a></td></li>
+        {% endfor %}
+    </ul>
+</div>
+
+<div class="left_arrow">
+    <a href="{% url 'index' %}">
+        <img src="{% static 'michelinapp/left.png' %}">
+    </a>
+</div>
+
+{% endblock %}
