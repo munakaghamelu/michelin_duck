@@ -1,3 +1,5 @@
+from configparser import SafeConfigParser
+import re
 from django.shortcuts import render
 from .models import Ingredients, Recipes, Junction
 
@@ -8,7 +10,7 @@ def index(request):
     return render(request, 'michelinapp/index.html')
 
 
-def add_inrediant(request):
+def add_ingredient(request):
     return
 
 
@@ -17,29 +19,33 @@ def delete_ingrediant(request):
 
 
 def get_recipe(request):
-    ingredients = request.GET.get('ingredient')
-    ingredients = ingredients.split(",")
+    # recipe_id = request.GET.get('recipe_id')
+    recipe = Recipes.objects.get(id='3')
+    steps = recipe.steps
+    steps = steps[1:-1].split(",")
 
-    ingID = Ingredients.objects.filter(name__in=ingredients)
-    ingredients = []
-    for ingredient in ingID:
-        print(ingredient.ingredient_id)
-        print(ingredient.name)
-        ingredients.append(ingredient.ingredient_id)
+    dangerous = ["cut", "heat", "fry", "cook", "knife",
+                 "bake", "chop", "kill", "oven", "boil", "burn"]
 
-    pair = Junction.objects.filter(ingredient_id__in=ingredients)
-    recipes = []
-    for recipe_id in pair:
-        recipes.append(recipe_id.recipe_id)
-    print(recipes)
+    safe = [0 for _ in range(len(steps))]
+    print(safe)
 
-    recipes = Recipes.objects.filter(id__in=recipes)
-    print(recipes)
+    steps[0] = steps[0][1:-1]
 
-    for r in recipes:
-        print(r.recipe_id)
-        print(r.name)
-        print(r.ingredients)
+    for i in range(1, len(steps)):
+        steps[i] = steps[i][2:-1]
+        if any(word in steps[i] for word in dangerous):
+            safe[i] = 1
+    print(steps)
+
+    for i in range(len(steps)):
+        print(str(safe[i]) + " : " + steps[i])
+
+    result = list(zip(steps, safe))
+    print(result)
+
+    return render(request, 'michelinapp/recipe.html', {'result': result})
 
 
-    return render(request, 'michelinapp/recipe.html', {'recipe': ingredients})
+def evaluate_safety(request):
+    return
