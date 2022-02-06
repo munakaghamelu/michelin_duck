@@ -16,30 +16,30 @@ def delete_ingrediant(request):
     return
 
 
-def get_recipe(request):
+def get_recipe_names(request):
     ingredients = request.GET.get('ingredient')
     ingredients = ingredients.split(",")
 
-    ingID = Ingredients.objects.filter(name__in=ingredients)
-    ingredients = []
-    for ingredient in ingID:
-        print(ingredient.ingredient_id)
-        print(ingredient.name)
-        ingredients.append(ingredient.ingredient_id)
+    ingredients_items = Ingredients.objects.filter(name__in=ingredients)
+    ingredients_ids = []
+    for ingredient in ingredients_items:
+        ingredients_ids.append(ingredient.ingredient_id)
 
-    pair = Junction.objects.filter(ingredient_id__in=ingredients)
-    recipes = []
-    for recipe_id in pair:
-        recipes.append(recipe_id.recipe_id)
-    print(recipes)
+    matched_recipes = []
+    for ingredients_id in ingredients_ids:
+        recipes = Junction.objects.filter(ingredient_id=ingredients_id)
+        recipe_ids = []
+        for recipe in recipes:
+            recipe_ids.append(recipe.recipe_id)
+        matched_recipes.append(recipe_ids)
+    
+    best_matched_recipes = list(set.intersection(*map(set, matched_recipes)))
+    recipes = Recipes.objects.filter(id__in=best_matched_recipes)
 
-    recipes = Recipes.objects.filter(id__in=recipes)
-    print(recipes)
-
-    for r in recipes:
-        print(r.recipe_id)
-        print(r.name)
-        print(r.ingredients)
+    return render(request, 'michelinapp/recipebook.html', {'recipes': recipes})
 
 
-    return render(request, 'michelinapp/recipe.html', {'recipe': ingredients})
+def get_recipe(request):
+    recipe_id = request.GET.get('select')
+    print(recipe_id)
+    return render(request, 'michelinapp/recipe.html', {'recipe':recipe_id})

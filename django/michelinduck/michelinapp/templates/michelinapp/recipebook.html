@@ -1,0 +1,8 @@
+{% extends 'michelinapp/base.html' %}
+{% block content %}
+<p>{{recipe}}</p>
+
+{% for recipe in recipes %}
+    <a class="nav-link" href="recipe?select={{ recipe.id }}">{{ recipe.name }}</a></td>
+{% endfor %}
+{%endblock%}
