@@ -1,35 +1,37 @@
 {% extends 'michelinapp/base.html' %}
 {% load static %}
 {% block content %}
-<p>{{recipe}}</p>
+
+<div class="lined_thick">
+    <h1>Instructions</h1>
+</div>
 
 <div id="book">
     <canvas id="pageflip-canvas"></canvas>
     <div class="pages">
+
         <section>
             <div>
-                <h2>Ingredients</h2>
-                <p>Insert Ingredients List</p>
+                <h2>ingredients</h2>
+                {% for i in ingredients %}
+                <p>{{i}}</p>
+                {% endfor %}
             </div>
         </section>
+        
+        {% for r in result %}
         <section>
             <div>
-                <h2>Step 1</h2>
-                <p>hInsert Step 1</p>
+                <h2>Step {{forloop.counter}}</h2>
+                {% if r.1 == 0 %}
+                <h3>Suitable for child.</h3>
+                {% else %}
+                <h3>Not Suitable for child.</h3>
+                {% endif %}
+                <p>{{r.0}}</p>
             </div>
         </section>
-        <section>
-            <div>
-                <h2>Step 2</h2>
-                <p>Insert Step 2</p>
-            </div>
-        </section>
-        <section>
-            <div>
-                <h2>Step 3</h2>
-                <p>Insert Step 3</p>
-            </div>
-        </section>
+        {% endfor %}
     </div>
 </div>
 

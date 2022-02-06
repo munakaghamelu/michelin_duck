@@ -9,11 +9,9 @@
 </div>
 
 <div class="notebook">
-    <ul class="cloud">
-        {% for recipe in recipes %}
-        <li><a class="nav-link" href="recipe?select={{ recipe.id }}">{{ recipe.name }}</a></td></li>
-        {% endfor %}
-    </ul>
+    {% for recipe in recipes %}
+    <a class="nav-link" href="recipe?select={{ recipe.id }}">{{ recipe.name }}</a></td>
+    {% endfor %}
 </div>
 
 <div class="left_arrow">

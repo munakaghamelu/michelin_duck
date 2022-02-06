@@ -19,8 +19,8 @@ def delete_ingrediant(request):
 
 
 def get_recipe(request):
-    # recipe_id = request.GET.get('recipe_id')
-    recipe = Recipes.objects.get(id='3')
+    recipe_id = request.GET.get('select')
+    recipe = Recipes.objects.get(id=recipe_id)
     steps = recipe.steps
     steps = steps[1:-1].split(",")
 
@@ -28,7 +28,7 @@ def get_recipe(request):
                  "bake", "chop", "kill", "oven", "boil", "burn"]
 
     safe = [0 for _ in range(len(steps))]
-    print(safe)
+    # print(safe)
 
     steps[0] = steps[0][1:-1]
 
@@ -36,15 +36,20 @@ def get_recipe(request):
         steps[i] = steps[i][2:-1]
         if any(word in steps[i] for word in dangerous):
             safe[i] = 1
-    print(steps)
+    # print(steps)
     
     for i in range(len(steps)):
         print(str(safe[i]) + " : " + steps[i])
 
     result = list(zip(steps, safe))
-    print(result)
-
-    return render(request, 'michelinapp/recipe.html', {'result': result})
+    # print(result)
+    ingredients = recipe.ingredients
+    ingredients = ingredients.replace('[','')
+    ingredients = ingredients.replace(']','')
+    ingredients = ingredients.replace('\'','')
+    ingredients_list = ingredients.split(',')
+    print(ingredients_list)
+    return render(request, 'michelinapp/recipe.html', {'result': result, 'ingredients': ingredients_list})
 
 def get_recipe_names(request):
     ingredients = request.GET.get('ingredient')
