@@ -1,16 +1,43 @@
+<!--@import url(https://fonts.googleapis.com/css?family=Patrick+Hand+SC);-->
+
 .main-header{
     background-color: #E0E0E0;
     display: flex;
     flex-wrap: wrap;
+    border-bottom: 3px solid #000;
 }
 
 .michelin_logo{
     flex: 0 0 20%;
-    padding: 10px;
 }
 
-.pans_logo{
-    flex: 0 0 80%;
-    padding: 10px;
-    img
+.lined_thick{
+    font-family: 'Patrick Hand SC', cursive;
+    font-size: 30px;
+    align-self: center;
+    background-color: #C4C4C4;
+    padding: 10px 10px 10px 20px;
+    margin: 0 1rem;
+    transition:all .5s ease;
+    box-shadow: 20px 38px 34px -26px hsla(0,0%,0%,.2);
+    border-radius: 255px 15px 225px 15px/15px 225px 15px 255px;
+    border:solid 7px #000;
+    float: right;
+    width: 70%;
+    padding-top: 10px;
+}
+
+.notebook{
+    font-family: 'Patrick Hand SC', cursive;
+    font-size: 30px;
+    padding: 50px;
+    background: url("/static/michelinapp/notebook.png");
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    background-position: center;
+    float: right;
+    width: 80%;
+    height: 500px;
+    align-items: center;
+    text-align: center;
 }

@@ -7,17 +7,25 @@
     <div class="michelin_logo">
       <img src="{% static 'michelinapp/logo.png' %}">
     </div>
-    <div class="pans_logo">
-      <img src="{% static 'michelinapp/footer.png' %}">
-    </div>
   </a>
 </header>
 
-<div class="ml-5 mr-5">
-  <form class="navbar-form pull-left" action="{% url 'recipe' %}">
-    <input type="text" class="span2" name="ingredient" id="search_form" value="" data-role="tagsinput" >
-    <button type="submit" class="btn">Submit</button>
-  </form>
+<br>
+
+<div class="lined_thick">
+  <div class="ml-5 mr-5">
+    <form class="navbar-form pull-left" action="{% url 'recipe' %}">
+      <input type="text" class="span2" name="ingredient" id="search_form" value="" data-role="tagsinput" >
+      <button type="submit" class="btn">Submit</button>
+    </form>
+  </div>
+</div>
+
+<br>
+<br>
+
+<div class="notebook">
+  Hello hahh
 </div>
 
 {%endblock%}
