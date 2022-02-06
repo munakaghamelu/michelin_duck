@@ -1,6 +1,39 @@
 {% extends 'michelinapp/base.html' %}
-{%load static%}
-{%block content%}
+{% load static %}
+{% block content %}
 <p>{{recipe}}</p>
+
+<div id="book">
+    <canvas id="pageflip-canvas"></canvas>
+    <div class="pages">
+        <section>
+            <div>
+                <h2>Ingredients</h2>
+                <p>Insert Ingredients List</p>
+            </div>
+        </section>
+        <section>
+            <div>
+                <h2>Step 1</h2>
+                <p>hInsert Step 1</p>
+            </div>
+        </section>
+        <section>
+            <div>
+                <h2>Step 2</h2>
+                <p>Insert Step 2</p>
+            </div>
+        </section>
+        <section>
+            <div>
+                <h2>Step 3</h2>
+                <p>Insert Step 3</p>
+            </div>
+        </section>
+    </div>
+</div>
 {%endblock%}
 
+{% block js %}
+    <script type="text/javascript" src="{% static 'michelinapp/pageflip.js' %}"></script>
+{% endblock js %}
