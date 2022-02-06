@@ -88,3 +88,8 @@
     position: absolute;
     bottom: 0px;
 }
+
+.skills {
+    text-align: center;
+    align-items: center;
+}

@@ -17,11 +17,42 @@ def add_ingredient(request):
 def delete_ingrediant(request):
     return
 
+def getTechniques(request):
+    recipe_id = request.GET.get('recipe_id')
+    recipe = Recipes.objects.get(in__id=recipe_id)
+    steps = recipe.steps
+    # steps = steps[1:-1].split(",")
+    # steps[0] = steps[0][1:-1]
+    # for i in range(1, len(steps)):
+    #     steps[i] = steps[i][2:-1]
+
+    steps = str(steps)
+
+    techniques = ["mix", "stir", "tear", "assemble", "mash", "roll",
+                  "spread", "peel", "sift", "drain", "knead", "season", "garnish"]
+
+    learn = []
+
+    for t in techniques:
+        if t in steps:
+            learn.append(t)
+
+    return
 
 def get_recipe(request):
     recipe_id = request.GET.get('select')
     recipe = Recipes.objects.get(id=recipe_id)
     steps = recipe.steps
+
+    techniques = ["mix", "stir", "tear", "assemble", "mash", "roll",
+                  "spread", "peel", "sift", "drain", "knead", "season", "garnish"]
+
+    learn = []
+
+    for t in techniques:
+        if t in steps:
+            learn.append(t)
+
     steps = steps[1:-1].split(",")
 
     dangerous = ["cut", "heat", "fry", "cook", "knife",
@@ -49,7 +80,7 @@ def get_recipe(request):
     ingredients = ingredients.replace('\'','')
     ingredients_list = ingredients.split(',')
     print(ingredients_list)
-    return render(request, 'michelinapp/recipe.html', {'result': result, 'ingredients': ingredients_list})
+    return render(request, 'michelinapp/recipe.html', {'result': result, 'ingredients': ingredients_list, 'learn': learn})
 
 def get_recipe_names(request):
     ingredients = request.GET.get('ingredient')

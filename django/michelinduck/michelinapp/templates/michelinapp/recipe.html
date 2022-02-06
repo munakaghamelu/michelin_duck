@@ -8,8 +8,15 @@
 
 <div id="book">
     <canvas id="pageflip-canvas"></canvas>
+    <section class="skills pages">
+        <div>
+            <h2>skills to learn!</h2>
+            {% for i in learn %}
+            <p>{{i}}</p>
+            {% endfor %}
+        </div>
+    </section>
     <div class="pages">
-
         <section>
             <div>
                 <h2>ingredients</h2>
